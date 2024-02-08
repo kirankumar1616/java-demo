@@ -1,6 +1,6 @@
-FROM maven:3.8.4-openjdk-11-slim AS build
+FROM maven:3.8.4-jdk-11 
 WORKDIR /app
-COPY pom.xml .
-COPY src ./src
-RUN mvn clean package -DskipTests
-CMD ["java", "-jar", "my-application.jar"]
+COPY . /app
+RUN mvn install clean package 
+COPY /target/*.jar /app/spring-boot-app.jar
+ENTRYPOINT ["java","-jar","spring-boot-app.jar"]
