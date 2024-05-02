@@ -31,4 +31,4 @@ jobs:
         trivy fs --format table -o trivy-fs-report.html .
     - name: Build Docker Image
       run: |
-        docker build -t kiran/abhishek:latest .
+        docker build -t kiran/abhishek:latest -f spring-boot-app/ .
