@@ -24,7 +24,7 @@ jobs:
     - uses: actions/upload-artifact@v4
       with:
         name: Boardgame
-        path: target/*.jar
+        path: /home/ec2-user/actions-runner/_work/java-demo/java-demo/spring-boot-app/target/*.jar
 
     - name: Trivy scan
       run: |
