@@ -19,17 +19,9 @@ jobs:
       - name: Build with Maven
         run: mvn package --file spring-boot-app/pom.xml
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: Boardgame
-          path: /home/ec2-user/actions-runner/_work/java-demo/java-demo/spring-boot-app/target/*.jar
-
-      - name: Trivy scan
-        run: |
-          trivy fs --format table -o trivy-fs-report.html .
 
 
       - name: Build Docker Image
         run: |
-          docker build -t kiran/abhishek:latest .
+          docker build -t kiran/abhishek:latest -f spring-boot-app/ .
 
