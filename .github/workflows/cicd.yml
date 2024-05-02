@@ -30,4 +30,4 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t kiran/abhishek:latest -f java-demo/spring-boot-app/Dockerfile java-demo/spring-boot-app
+          docker build -t kiran/abhishek:latest -f java-demo/spring-boot-app/Dockerfile .
