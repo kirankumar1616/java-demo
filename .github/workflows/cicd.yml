@@ -28,6 +28,12 @@ jobs:
         run: |
           trivy fs --format table -o trivy-fs-report.html .
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Build Docker Image
         run: |
           docker build -t kiran/abhishek:latest -f spring-boot-app/Dockerfile .
