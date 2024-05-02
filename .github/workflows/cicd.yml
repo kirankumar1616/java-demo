@@ -25,7 +25,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t kiran/abhishek:latest -f spring-boot-app/Dockerfile spring-boot-app/
+          docker build -t kiranprav/kiranabhishek:latest -f spring-boot-app/Dockerfile spring-boot-app/
 
       - name: Trivy Image Scan
         run: |
@@ -39,4 +39,4 @@ jobs:
 
       - name: Push Docker Image
         run: |
-            docker push kiran/abhishek:latest
+            docker push kiranprav/kiranabhishek:latest
