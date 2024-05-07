@@ -37,10 +37,12 @@ jobs:
 #          username: ${{ secrets.DOCKERHUB_USERNAME }}
 #          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Push Docker Image
-        run: |
-            docker push kiranprav/kiranabhishek:latest
+#      - name: Push Docker Image
+#        run: |
+#            docker push kiranprav/kiranabhishek:latest
+            
       - name: Tag Docker Image & Push Docker image to AWS ECR
         run: |
-          docker tag <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com/kiranprav:latest <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com/kiranprav:latest
-          docker push <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com/kiranprav:latest
+          aws ecr get-login-password --region ${{ secrets.REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.REGION }}.amazonaws.com
+          docker tag ${{ secrets.AWS_ACCOUNT_ID }} .dkr.ecr.${{ secrets.REGION }}.amazonaws.com/kiranprav:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.REGION }}.amazonaws.com/kiranprav:latest
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.REGION }}.amazonaws.com/kiranprav:latest
