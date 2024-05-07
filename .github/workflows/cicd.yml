@@ -44,5 +44,5 @@ jobs:
       - name: Tag Docker Image & Push Docker image to AWS ECR
         run: |
           aws ecr get-login-password --region ${{ secrets.REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.REGION }}.amazonaws.com
-          docker tag ${{ secrets.AWS_ACCOUNT_ID }} .dkr.ecr.${{ secrets.REGION }}.amazonaws.com/kiranprav:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.REGION }}.amazonaws.com/kiranprav:latest
+          docker tag kiranprav:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.REGION }}.amazonaws.com/kiranprav:latest
           docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.REGION }}.amazonaws.com/kiranprav:latest
