@@ -51,5 +51,6 @@ jobs:
         with:
           base64-kube-config: ${{ secrets.EKS_CLUSTER_TOKEN }}
       - run: |
+         cd spring-boot-app
          kubectl apply -f deployment-service.yaml -n webapps
          kubectl get svc -n webapps
