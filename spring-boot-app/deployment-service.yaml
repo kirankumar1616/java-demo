@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pixalive-play-server-deployment
+  namespace: pixalive
+  labels:
+    tier: app
+    name: pixalive-play-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: app
+      name: pixalive-play-server
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        tier: app
+        name: pixalive-play-server
+    spec:
+      containers:
+      - name: pixalive-play-server
+        imagePullPolicy: Always
+        image: "358308582535.dkr.ecr.ap-south-1.amazonaws.com/pixalive-play-server:1.0.0-10"
+        resources:
+          requests:
+            cpu: "450m"
+            memory: "1024Mi"
+          limits:
+            cpu: "550m"
+            memory: "1024Mi"
+        envFrom:
+        - secretRef:
+            name: pixalive-play-server-secret
+
+        ports:
+        - containerPort: 3002
